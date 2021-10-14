@@ -6,6 +6,7 @@ import datetime
 import dateutil
 #=====================================================================================#
 # filepaths of the data
+# the data was gotten from https://www.wsj.com/market-data/bonds/treasuries
 f1 = 'bills2021-10-08.txt'
 f2 = 'bonds2021-10-08.txt'
 # Read the treasury data and format it
