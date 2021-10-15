@@ -1,4 +1,4 @@
-# Import the relevant packages
+# import the relevant packages
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,12 +6,12 @@ import datetime
 import dateutil
 #=====================================================================================#
 # filepaths of the data
-# the data was gotten from https://www.wsj.com/market-data/bonds/treasuries
 f1 = 'bills2021-10-08.txt'
 f2 = 'bonds2021-10-08.txt'
 # Read the treasury data and format it
-bills = pd.read_csv(f1, sep='\t')
-bonds = pd.read_csv(f2, sep='\t')
+# the data was gotten from https://www.wsj.com/market-data/bonds/treasuries
+bills = pd.read_csv(f1,sep='\t')
+bonds = pd.read_csv(f2,sep='\t')
 bills = bills.drop(bills.index[bills["ASKED"]=='n.a'])
 bonds = bonds.drop(bonds.index[bonds["ASKED"]=='n.a'])
 #=====================================================================================#
@@ -88,10 +88,11 @@ plt.show()
 # Determine the zero-coupon bond yield
 df['ZERO YIELD'] = ( ( 1 / ( df['ZERO PRICE']**(1/df.TTM) ) ) - 1 ) * 100
 #=====================================================================================#
-# Plotting the term-structure of interest rates (yield curve)
-df['ZERO YIELD'].plot(color='b')
-plt.ylabel('Yield')
+# Plotting the yield curve
+df['ZERO YIELD'].plot(color='b',label='bootstrapped(zero)')
+df['ASKED YIELD'].plot(color='r',label='coupon')
+plt.ylabel('Interest rate')
 plt.grid()
-plt.title('term-structure of interest rates ('+str(today)[:10]+')')
+plt.title('Yield curve ('+str(today)[:10]+')')
+plt.legend()
 plt.show()
-
